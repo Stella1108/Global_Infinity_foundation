@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -20,29 +19,45 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur">
-      <div className="container flex h-16 items-center justify-between">
-        <Link href="/" className="text-xl font-bold text-primary">
-          Global Infinity Foundation
+    <motion.header 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="sticky top-0 z-50 w-full border-b border-amber-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60"
+    >
+      <div className="container mx-auto px-4 flex h-16 items-center justify-between">
+        {/* Logo with gold gradient and hover animation */}
+        <Link href="/" className="group relative">
+          <motion.span 
+            whileHover={{ scale: 1.05 }}
+            className="text-xl font-bold bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent transition-all duration-300"
+          >
+            Global Infinity Foundation
+          </motion.span>
+          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-500 to-yellow-500 group-hover:w-full transition-all duration-300"></span>
         </Link>
 
         {/* Desktop navigation */}
-        <nav className="hidden md:flex gap-6">
+        <nav className="hidden md:flex gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium transition-colors hover:text-primary"
+              className="relative group"
             >
-              {link.label}
+              <span className="text-sm font-medium text-gray-600 group-hover:text-amber-600 transition-all duration-300">
+                {link.label}
+              </span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-500 to-yellow-500 group-hover:w-full transition-all duration-300"></span>
             </Link>
           ))}
         </nav>
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden"
+          className="md:hidden text-amber-600 hover:text-amber-700 transition-colors"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          suppressHydrationWarning
         >
           {mobileMenuOpen ? <X /> : <Menu />}
         </button>
@@ -51,24 +66,28 @@ export default function Navbar() {
       {/* Mobile navigation */}
       {mobileMenuOpen && (
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="container md:hidden pb-4"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          className="container mx-auto px-4 md:hidden pb-4"
         >
-          <nav className="flex flex-col gap-3">
+          <nav className="flex flex-col gap-2 border border-amber-200 rounded-lg p-4 bg-white shadow-lg">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium py-2 hover:text-primary"
+                className="relative group py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {link.label}
+                <span className="text-sm font-medium text-gray-600 group-hover:text-amber-600 transition-all duration-300">
+                  {link.label}
+                </span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-500 to-yellow-500 group-hover:w-full transition-all duration-300"></span>
               </Link>
             ))}
           </nav>
         </motion.div>
       )}
-    </header>
+    </motion.header>
   )
 }
