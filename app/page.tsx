@@ -440,7 +440,7 @@ export default function Home() {
                 <Button 
                   size="lg" 
                   variant="outline"
-                  className="border-2 border-white/30 text-white hover:bg-white/20 px-8 py-6 rounded-full text-lg"
+                  className="border-2 border-white/30 text-black hover:bg-white/20 px-8 py-6 rounded-full text-lg"
                 >
                   Get Involved
                 </Button>

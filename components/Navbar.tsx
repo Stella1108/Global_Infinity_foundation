@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -19,22 +20,30 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <motion.header 
+    <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className="sticky top-0 z-50 w-full border-b border-amber-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60"
     >
       <div className="container mx-auto px-4 flex h-16 items-center justify-between">
-        {/* Logo with gold gradient and hover animation */}
-        <Link href="/" className="group relative">
-          <motion.span 
+        {/* Logo with hover animation */}
+        <Link href="/" className="group relative flex items-center">
+          <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-xl font-bold bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent transition-all duration-300"
+            transition={{ duration: 0.2 }}
+            className="flex items-center"
           >
-            Global Infinity Foundation
-          </motion.span>
-          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-500 to-yellow-500 group-hover:w-full transition-all duration-300"></span>
+            <Image
+              src="/assets/images/1.png"
+              alt="Global Infinity Foundation Logo"
+              width={980}
+              height={500}
+              className="h-10 w-auto object-contain"
+              priority
+            />
+          </motion.div>
+          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-500 to-yellow-500 group-hover:w-full transition-all duration-300" />
         </Link>
 
         {/* Desktop navigation */}
@@ -48,7 +57,7 @@ export default function Navbar() {
               <span className="text-sm font-medium text-gray-600 group-hover:text-amber-600 transition-all duration-300">
                 {link.label}
               </span>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-500 to-yellow-500 group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-500 to-yellow-500 group-hover:w-full transition-all duration-300" />
             </Link>
           ))}
         </nav>
@@ -82,7 +91,7 @@ export default function Navbar() {
                 <span className="text-sm font-medium text-gray-600 group-hover:text-amber-600 transition-all duration-300">
                   {link.label}
                 </span>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-500 to-yellow-500 group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-500 to-yellow-500 group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
           </nav>

@@ -26,14 +26,14 @@ const artisans = [
     name: 'Maria Chen',
     craft: 'Guitar Artisan',
     experience: '28 years',
-    image: 'https://images.unsplash.com/photo-1494790108777-7669c4cd07f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     quote: 'The wood speaks through the hands of the maker.'
   },
   {
     name: 'James Wilson',
     craft: 'Piano Craftsman',
     experience: '42 years',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     quote: 'Tradition is the foundation of innovation.'
   }
 ]

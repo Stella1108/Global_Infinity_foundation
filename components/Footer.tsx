@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Heart, Music, Mail, Phone, MapPin, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
+import { useState } from 'react'
 
 const footerLinks = {
   quickLinks: [
@@ -24,12 +26,14 @@ const footerLinks = {
 }
 
 export default function Footer() {
+  const [imageError, setImageError] = useState(false)
+
   return (
     <footer className="bg-gray-900 text-white pt-16 pb-8">
       <div className="container mx-auto px-4">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          {/* Company Info */}
+          {/* Company Info with Logo */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -37,10 +41,26 @@ export default function Footer() {
             viewport={{ once: true }}
           >
             <Link href="/" className="inline-block group mb-4">
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent group-hover:from-amber-500 group-hover:to-yellow-500 transition-all duration-300">
-                Global Infinity
-              </h3>
-              <div className="w-12 h-0.5 bg-gradient-to-r from-amber-400 to-yellow-400 group-hover:w-full transition-all duration-300"></div>
+              {!imageError ? (
+                <div className="relative">
+                  <Image
+                    src="/assets/images/2.png"
+                    alt="Global Infinity Foundation Logo"
+                    width={200}
+                    height={60}
+                    className="h-12 w-auto object-contain mb-2"
+                    onError={() => setImageError(true)}
+                  />
+                  <div className="w-12 h-0.5 bg-gradient-to-r from-amber-400 to-yellow-400 group-hover:w-full transition-all duration-300"></div>
+                </div>
+              ) : (
+                <>
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent group-hover:from-amber-500 group-hover:to-yellow-500 transition-all duration-300">
+                    Global Infinity
+                  </h3>
+                  <div className="w-12 h-0.5 bg-gradient-to-r from-amber-400 to-yellow-400 group-hover:w-full transition-all duration-300"></div>
+                </>
+              )}
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
               Empowering communities through music, craftsmanship, and cultural events.
